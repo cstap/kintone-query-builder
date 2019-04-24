@@ -40,6 +40,11 @@ class KintoneQueryBuffer
         $this->buffer[] = $obj;
     }
 
+    public function isEmpty(): bool
+    {
+        return $this->buffer === [];
+    }
+
     /**
      * @param bool $hasParen
      * @return string

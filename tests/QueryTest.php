@@ -85,15 +85,17 @@ class QueryTest extends TestCase
      */
     public function testAndWhere(): void
     {
-        $q0 = (new KintoneQueryBuilder())
+        $q = (new KintoneQueryBuilder())
             ->where('age', '>', 10)
             ->andWhere('name', 'like', 'banana')
             ->andWhere('name', '!=', 'banana')
             ->build();
         $this->assertEquals(
             'age > 10 and name like "banana" and name != "banana"',
-            $q0
+            $q
         );
+        $q = (new KintoneQueryBuilder())->andWhere('x', '>', 10)->build();
+        $this->assertEquals('x > 10', $q);
     }
 
     /**
@@ -378,6 +380,16 @@ class QueryTest extends TestCase
             '(((a < 10 and x < 100) and b < 30) and c < 20) and d < 10',
             $q
         );
+        $q = (new KintoneQueryBuilder())
+            ->where(new KintoneQueryExpr())
+            ->where((new KintoneQueryExpr())->where('x', '<', 10))
+            ->build();
+        $this->assertEquals('(x < 10)', $q);
+        $q = (new KintoneQueryBuilder())
+            ->where(new KintoneQueryExpr())
+            ->andWhere((new KintoneQueryExpr())->where('x', '<', 10))
+            ->build();
+        $this->assertEquals('(x < 10)', $q);
     }
 
     public function testEscape(): void

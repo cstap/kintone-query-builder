@@ -171,6 +171,9 @@ class KintoneQueryExpr
      */
     private function whereWithExpr(KintoneQueryExpr $expr, string $conj)
     {
+        if ($expr->buffer->isEmpty()) {
+            return $this;
+        }
         $expr->buffer->conj = $conj;
         $this->buffer->append($expr->buffer);
         return $this;
