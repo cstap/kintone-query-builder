@@ -89,7 +89,7 @@ class KintoneQueryExpr
     }
 
     /**
-     * @param string | int | array $val
+     * @param string|int|(string|int)[] $val
      * @return string
      * @throws KintoneQueryException
      */
@@ -143,7 +143,7 @@ class KintoneQueryExpr
     /**
      * @param string $var
      * @param string $op
-     * @param int | string | array $val
+     * @param int|string|(int|string)[] $val
      * @param string $conj
      * @return $this
      * @throws KintoneQueryException
@@ -180,25 +180,25 @@ class KintoneQueryExpr
     }
 
     /**
-     * @param string | KintoneQueryExpr $varOrExpr
+     * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
-     * @param int | string | array $val
+     * @param int|string|(int|string)[] $val
      * @return $this
      * @throws KintoneQueryException
      */
-    public function where($varOrExpr, $op = '', $val = null)
+    public function where($varOrExpr, string $op = '', $val = null)
     {
         return $this->andWhere($varOrExpr, $op, $val);
     }
 
     /**
-     * @param string | KintoneQueryExpr $varOrExpr
+     * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
-     * @param int | string | array $val
+     * @param int|string|(int|string)[] $val
      * @return $this
      * @throws KintoneQueryException
      */
-    public function andWhere($varOrExpr, $op = '', $val = null)
+    public function andWhere($varOrExpr, string $op = '', $val = null)
     {
         if ($varOrExpr instanceof KintoneQueryExpr) {
             return $this->whereWithExpr($varOrExpr, 'and');
@@ -215,9 +215,9 @@ class KintoneQueryExpr
     }
 
     /**
-     * @param string | KintoneQueryExpr $varOrExpr
+     * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
-     * @param int | string | array $val
+     * @param int|string|(int|string)[] $val
      * @return $this
      * @throws KintoneQueryException
      */

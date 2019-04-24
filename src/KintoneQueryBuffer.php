@@ -12,13 +12,12 @@ class KintoneQueryBuffer
 {
     /**
      * null or 'and' or 'or'
-     * @var string | null
+     * @var string|null
      */
     public $conj;
 
     /**
-     * element : KintoneQueryBuffer | KintoneQueryBufferElement
-     * @var array
+     * @var (KintoneQueryBuffer|KintoneQueryBuilder)[]
      */
     public $buffer;
 
@@ -33,13 +32,16 @@ class KintoneQueryBuffer
     }
 
     /**
-     * @param $obj
+     * @param KintoneQueryBuffer|KintoneQueryBufferElement $obj
      */
     public function append($obj): void
     {
         $this->buffer[] = $obj;
     }
 
+    /**
+     * @return bool
+     */
     public function isEmpty(): bool
     {
         return $this->buffer === [];

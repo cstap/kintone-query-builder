@@ -11,7 +11,7 @@ class KintoneQueryBufferElement
 {
     /**
      * null or 'and' or 'or'
-     * @var string | null
+     * @var string|null
      */
     public $conj;
 
