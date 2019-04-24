@@ -2,7 +2,9 @@
 [![CircleCI](https://circleci.com/gh/cstap/kintone-query-builder-php.svg?style=svg)](https://circleci.com/gh/cstap/kintone-query-builder-php)
 
 [![PHP Version](https://img.shields.io/badge/php-7.2-pink.svg?style=flat-square)]()
-
+[![Latest Stable Version](https://poser.pugx.org/toyokumo/kintone-query-builder/v/stable)](https://packagist.org/packages/toyokumo/kintone-query-builder)
+[![Latest Unstable Version](https://poser.pugx.org/toyokumo/kintone-query-builder/v/unstable)](https://packagist.org/packages/toyokumo/kintone-query-builder)
+[![License](https://poser.pugx.org/toyokumo/kintone-query-builder/license)](https://packagist.org/packages/toyokumo/kintone-query-builder)
 
 [Kintone REST API](https://developer.cybozu.io/hc/ja/articles/202331474)のためのクエリビルダーです。. Kintone query builderは`GET /records.json`の`query`パラメータ用の文字列を組み立てるのを助けます。
 ## usage
