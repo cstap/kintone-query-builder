@@ -15,5 +15,9 @@
     "scripts": {
         "test": "phpunit tests/*.php",
         "format": "prettier --write src/*.php tests/*.php"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
     }
 }
