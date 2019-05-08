@@ -1,3 +1,8 @@
-vendor/
+/composer.lock
+/vendor/
+/bin/
 .phpunit.result.cache
 *~
+
+# Editor
+/.idea
