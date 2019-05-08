@@ -200,7 +200,7 @@ class KintoneQueryExpr
      */
     public function andWhere($varOrExpr, string $op = '', $val = null): self
     {
-        if ($varOrExpr instanceof KintoneQueryExpr) {
+        if ($varOrExpr instanceof self) {
             return $this->whereWithExpr($varOrExpr, 'and');
         }
         if (\is_string($varOrExpr)) {
@@ -223,7 +223,7 @@ class KintoneQueryExpr
      */
     public function orWhere($varOrExpr, string $op = '', $val = null): self
     {
-        if ($varOrExpr instanceof KintoneQueryExpr) {
+        if ($varOrExpr instanceof self) {
             return $this->whereWithExpr($varOrExpr, 'or');
         }
         if (\is_string($varOrExpr)) {
