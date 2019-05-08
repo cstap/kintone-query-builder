@@ -145,7 +145,7 @@ class KintoneQueryExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
      * @param string $conj
-     * @return $this
+     * @return self
      * @throws KintoneQueryException
      */
     private function whereWithVarOpVal(
@@ -153,7 +153,7 @@ class KintoneQueryExpr
         string $op,
         $val,
         string $conj
-    ) {
+    ): self {
         $this->buffer->append(
             new KintoneQueryBufferElement(
                 self::genWhereClause($var, $op, $val),
@@ -166,10 +166,10 @@ class KintoneQueryExpr
     /**
      * @param KintoneQueryExpr $expr
      * @param string $conj
-     * @return $this
+     * @return self
      * @throws KintoneQueryException
      */
-    private function whereWithExpr(KintoneQueryExpr $expr, string $conj)
+    private function whereWithExpr(KintoneQueryExpr $expr, string $conj): self
     {
         if ($expr->buffer->isEmpty()) {
             return $this;
@@ -183,10 +183,10 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return $this
+     * @return self
      * @throws KintoneQueryException
      */
-    public function where($varOrExpr, string $op = '', $val = null)
+    public function where($varOrExpr, string $op = '', $val = null): self
     {
         return $this->andWhere($varOrExpr, $op, $val);
     }
@@ -195,10 +195,10 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return $this
+     * @return self
      * @throws KintoneQueryException
      */
-    public function andWhere($varOrExpr, string $op = '', $val = null)
+    public function andWhere($varOrExpr, string $op = '', $val = null): self
     {
         if ($varOrExpr instanceof KintoneQueryExpr) {
             return $this->whereWithExpr($varOrExpr, 'and');
@@ -218,10 +218,10 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return $this
+     * @return self
      * @throws KintoneQueryException
      */
-    public function orWhere($varOrExpr, string $op = '', $val = null)
+    public function orWhere($varOrExpr, string $op = '', $val = null): self
     {
         if ($varOrExpr instanceof KintoneQueryExpr) {
             return $this->whereWithExpr($varOrExpr, 'or');

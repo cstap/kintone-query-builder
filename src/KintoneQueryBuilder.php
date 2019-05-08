@@ -29,9 +29,9 @@ class KintoneQueryBuilder extends KintoneQueryExpr
     /**
      * @param string $var
      * @param string $ord
-     * @return $this
+     * @return self
      */
-    public function orderBy(string $var, string $ord)
+    public function orderBy(string $var, string $ord): self
     {
         if ($this->orderClause === '') {
             $this->orderClause = 'order by ' . $var . ' ' . $ord;
@@ -43,9 +43,9 @@ class KintoneQueryBuilder extends KintoneQueryExpr
 
     /**
      * @param int $n
-     * @return $this
+     * @return self
      */
-    public function limit(int $n)
+    public function limit(int $n): self
     {
         $this->limitClause = 'limit ' . $n;
         return $this;
@@ -53,9 +53,9 @@ class KintoneQueryBuilder extends KintoneQueryExpr
 
     /**
      * @param int $n
-     * @return $this
+     * @return self
      */
-    public function offset(int $n)
+    public function offset(int $n): self
     {
         $this->offsetClause = 'offset ' . $n;
         return $this;
