@@ -13,7 +13,8 @@
         "psr-4": {"KintoneQueryBuilder\\" : "src/"}
     },
     "scripts": {
-        "test": "phpunit tests/*.php",
+        "test": "phpunit",
+        "coverage": "phpunit --coverage-text --coverage-html tests/_output",
         "format": "prettier --write src/*.php tests/*.php"
     },
     "config": {
