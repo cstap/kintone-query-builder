@@ -125,7 +125,7 @@ class KintoneQueryExpr
      * @return string
      * @throws KintoneQueryException
      */
-    public static function genWhereClause($var, $op, $val)
+    public static function genWhereClause($var, $op, $val): string
     {
         // case $op = 'in' or 'not in'
         if ($op === 'in' || $op === 'not in') {
