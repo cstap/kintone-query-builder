@@ -13,12 +13,12 @@ class KintoneQueryBuffer implements KintoneQueryBufferInterface
      * null or 'and' or 'or'
      * @var string|null
      */
-    public $conj;
+    private $conj;
 
     /**
      * @var KintoneQueryBufferInterface[]
      */
-    public $buffer;
+    private $buffer;
 
     /**
      * KintoneQueryBuffer constructor.
@@ -28,6 +28,33 @@ class KintoneQueryBuffer implements KintoneQueryBufferInterface
     {
         $this->buffer = [];
         $this->conj = $conj;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getConj(): ?string
+    {
+        return $this->conj;
+    }
+
+    /**
+     * @param string|null $conj
+     * @return self
+     */
+    public function setConj(?string $conj): self
+    {
+        $this->conj = $conj;
+
+        return $this;
+    }
+
+    /**
+     * @return KintoneQueryBufferInterface[]
+     */
+    public function getBuffer(): array
+    {
+        return $this->buffer;
     }
 
     /**
@@ -62,7 +89,7 @@ class KintoneQueryBuffer implements KintoneQueryBufferInterface
             if ($i == 0) {
                 $query .= $subQuery;
             } else {
-                $query .= ' ' . $e->conj . ' ' . $subQuery;
+                $query .= ' ' . $e->getConj() . ' ' . $subQuery;
             }
         }
         if ($query === '') {

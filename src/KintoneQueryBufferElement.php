@@ -12,13 +12,13 @@ class KintoneQueryBufferElement implements KintoneQueryBufferInterface
      * null or 'and' or 'or'
      * @var string|null
      */
-    public $conj;
+    private $conj;
 
     /**
      * minimum element ('x < 10' or 'y = 10' or 'name like "banana"')
      * @var string
      */
-    public $data;
+    private $data;
 
     /**
      * KintoneQueryBufferElement constructor.
@@ -29,6 +29,14 @@ class KintoneQueryBufferElement implements KintoneQueryBufferInterface
     {
         $this->data = $data;
         $this->conj = $conj;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getConj(): ?string
+    {
+        return $this->conj;
     }
 
     /**

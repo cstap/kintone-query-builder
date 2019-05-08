@@ -174,7 +174,7 @@ class KintoneQueryExpr
         if ($expr->buffer->isEmpty()) {
             return $this;
         }
-        $expr->buffer->conj = $conj;
+        $expr->buffer->setConj($conj);
         $this->buffer->append($expr->buffer);
         return $this;
     }
