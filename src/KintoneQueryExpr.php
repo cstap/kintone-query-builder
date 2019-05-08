@@ -103,7 +103,7 @@ class KintoneQueryExpr
             return '"' . self::escapeDoubleQuote($val) . '"';
         }
         if (is_int($val)) {
-            return strval($val);
+            return (string)$val;
         }
         if (is_array($val)) {
             $list = [];
