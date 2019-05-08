@@ -8,10 +8,10 @@
         "phpunit/phpunit": "^8.0"
     },
     "autoload": {
-	"psr-4": {"KintoneQueryBuilder\\" : "src/"}
+        "psr-4": {"KintoneQueryBuilder\\" : "src/"}
     },
     "scripts": {
-	"test": "phpunit tests/*.php",
-	"format": "prettier --write src/*.php tests/*.php"
+        "test": "phpunit tests/*.php",
+        "format": "prettier --write src/*.php tests/*.php"
     }
 }
