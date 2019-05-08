@@ -86,7 +86,7 @@ class KintoneQueryBuffer implements KintoneQueryBufferInterface
             if ($subQuery === '()' || $subQuery === '') {
                 continue;
             }
-            if ($i == 0) {
+            if ($i === 0) {
                 $query .= $subQuery;
             } else {
                 $query .= ' ' . $e->getConj() . ' ' . $subQuery;
