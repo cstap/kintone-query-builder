@@ -8,7 +8,7 @@ namespace KintoneQueryBuilder;
  * This class builds logical condition clauses.
  * Note that you can't specify 'offset' or 'order by' with this class.
  * In that case, you should use KintoneQueryBuilder.
- * KintoneQueryExpr can be a argment of new KintoneQueryBuilder() to build  a nested query like '(A and B) or (C and D)'.
+ * KintoneQueryExpr can be a argument of new KintoneQueryBuilder() to build  a nested query like '(A and B) or (C and D)'.
  *
  * @package KintoneQueryBuilder
  *
