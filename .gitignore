@@ -1,6 +1,7 @@
 /composer.lock
 /vendor/
 /bin/
+/tests/_output/
 .phpunit.result.cache
 *~
 
