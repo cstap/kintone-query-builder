@@ -236,15 +236,4 @@ class KintoneQueryExpr
                     : (string) $varOrExpr)
         );
     }
-
-    /**
-     * @return string
-     */
-    public function build(): string
-    {
-        if ($this->buffer === []) {
-            return '';
-        }
-        return $this->buffer->toQuery();
-    }
 }
