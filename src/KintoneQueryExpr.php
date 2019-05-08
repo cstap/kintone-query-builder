@@ -121,7 +121,7 @@ class KintoneQueryExpr
     /**
      * @param string $var
      * @param string $op
-     * @param string $val
+     * @param int|string|(int|string)[] $val
      * @return string
      * @throws KintoneQueryException
      */
