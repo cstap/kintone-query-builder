@@ -26,7 +26,7 @@ class KintoneQueryBufferElement
      * @param string $data
      * @param string|null $conj
      */
-    public function __construct(string $data, string $conj = null)
+    public function __construct(string $data, ?string $conj = null)
     {
         $this->data = $data;
         $this->conj = $conj;

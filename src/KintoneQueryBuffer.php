@@ -25,7 +25,7 @@ class KintoneQueryBuffer
      * KintoneQueryBuffer constructor.
      * @param string|null $conj
      */
-    public function __construct(string $conj = null)
+    public function __construct(?string $conj = null)
     {
         $this->buffer = [];
         $this->conj = $conj;
