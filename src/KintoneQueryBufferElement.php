@@ -6,8 +6,7 @@ namespace KintoneQueryBuilder;
  * Class KintoneQueryBufferElement
  * @package KintoneQueryBuilder
  */
-
-class KintoneQueryBufferElement
+class KintoneQueryBufferElement implements KintoneQueryBufferInterface
 {
     /**
      * null or 'and' or 'or'

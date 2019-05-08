@@ -7,8 +7,7 @@ namespace KintoneQueryBuilder;
  * Class KintoneQueryBuffer
  * @package KintoneQueryBuilder
  */
-
-class KintoneQueryBuffer
+class KintoneQueryBuffer implements KintoneQueryBufferInterface
 {
     /**
      * null or 'and' or 'or'
@@ -17,7 +16,7 @@ class KintoneQueryBuffer
     public $conj;
 
     /**
-     * @var (KintoneQueryBuffer|KintoneQueryBuilder)[]
+     * @var KintoneQueryBufferInterface[]
      */
     public $buffer;
 
@@ -32,9 +31,9 @@ class KintoneQueryBuffer
     }
 
     /**
-     * @param KintoneQueryBuffer|KintoneQueryBufferElement $obj
+     * @param KintoneQueryBufferInterface $obj
      */
-    public function append($obj): void
+    public function append(KintoneQueryBufferInterface $obj): void
     {
         $this->buffer[] = $obj;
     }
