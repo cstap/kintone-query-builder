@@ -7,34 +7,60 @@ namespace KintoneQueryBuilder;
  * Class KintoneQueryBuffer
  * @package KintoneQueryBuilder
  */
-
-class KintoneQueryBuffer
+class KintoneQueryBuffer implements KintoneQueryBufferInterface
 {
     /**
      * null or 'and' or 'or'
      * @var string|null
      */
-    public $conj;
+    private $conj;
 
     /**
-     * @var (KintoneQueryBuffer|KintoneQueryBuilder)[]
+     * @var KintoneQueryBufferInterface[]
      */
-    public $buffer;
+    private $buffer;
 
     /**
      * KintoneQueryBuffer constructor.
      * @param string|null $conj
      */
-    public function __construct(string $conj = null)
+    public function __construct(?string $conj = null)
     {
         $this->buffer = [];
         $this->conj = $conj;
     }
 
     /**
-     * @param KintoneQueryBuffer|KintoneQueryBufferElement $obj
+     * @return string|null
      */
-    public function append($obj): void
+    public function getConj(): ?string
+    {
+        return $this->conj;
+    }
+
+    /**
+     * @param string|null $conj
+     * @return $this
+     */
+    public function setConj(?string $conj): self
+    {
+        $this->conj = $conj;
+
+        return $this;
+    }
+
+    /**
+     * @return KintoneQueryBufferInterface[]
+     */
+    public function getBuffer(): array
+    {
+        return $this->buffer;
+    }
+
+    /**
+     * @param KintoneQueryBufferInterface $obj
+     */
+    public function append(KintoneQueryBufferInterface $obj): void
     {
         $this->buffer[] = $obj;
     }
@@ -60,10 +86,10 @@ class KintoneQueryBuffer
             if ($subQuery === '()' || $subQuery === '') {
                 continue;
             }
-            if ($i == 0) {
+            if ($i === 0) {
                 $query .= $subQuery;
             } else {
-                $query .= ' ' . $e->conj . ' ' . $subQuery;
+                $query .= ' ' . $e->getConj() . ' ' . $subQuery;
             }
         }
         if ($query === '') {

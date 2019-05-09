@@ -8,7 +8,7 @@ namespace KintoneQueryBuilder;
  * This class builds logical condition clauses.
  * Note that you can't specify 'offset' or 'order by' with this class.
  * In that case, you should use KintoneQueryBuilder.
- * KintoneQueryExpr can be a argment of new KintoneQueryBuilder() to build  a nested query like '(A and B) or (C and D)'.
+ * KintoneQueryExpr can be a argument of new KintoneQueryBuilder() to build  a nested query like '(A and B) or (C and D)'.
  *
  * @package KintoneQueryBuilder
  *
@@ -103,7 +103,7 @@ class KintoneQueryExpr
             return '"' . self::escapeDoubleQuote($val) . '"';
         }
         if (is_int($val)) {
-            return strval($val);
+            return (string)$val;
         }
         if (is_array($val)) {
             $list = [];
@@ -121,11 +121,11 @@ class KintoneQueryExpr
     /**
      * @param string $var
      * @param string $op
-     * @param string $val
+     * @param int|string|(int|string)[] $val
      * @return string
      * @throws KintoneQueryException
      */
-    public static function genWhereClause($var, $op, $val)
+    public static function genWhereClause($var, $op, $val): string
     {
         // case $op = 'in' or 'not in'
         if ($op === 'in' || $op === 'not in') {
@@ -153,7 +153,7 @@ class KintoneQueryExpr
         string $op,
         $val,
         string $conj
-    ) {
+    ): self {
         $this->buffer->append(
             new KintoneQueryBufferElement(
                 self::genWhereClause($var, $op, $val),
@@ -169,12 +169,12 @@ class KintoneQueryExpr
      * @return $this
      * @throws KintoneQueryException
      */
-    private function whereWithExpr(KintoneQueryExpr $expr, string $conj)
+    private function whereWithExpr(KintoneQueryExpr $expr, string $conj): self
     {
         if ($expr->buffer->isEmpty()) {
             return $this;
         }
-        $expr->buffer->conj = $conj;
+        $expr->buffer->setConj($conj);
         $this->buffer->append($expr->buffer);
         return $this;
     }
@@ -186,7 +186,7 @@ class KintoneQueryExpr
      * @return $this
      * @throws KintoneQueryException
      */
-    public function where($varOrExpr, string $op = '', $val = null)
+    public function where($varOrExpr, string $op = '', $val = null): self
     {
         return $this->andWhere($varOrExpr, $op, $val);
     }
@@ -198,9 +198,9 @@ class KintoneQueryExpr
      * @return $this
      * @throws KintoneQueryException
      */
-    public function andWhere($varOrExpr, string $op = '', $val = null)
+    public function andWhere($varOrExpr, string $op = '', $val = null): self
     {
-        if ($varOrExpr instanceof KintoneQueryExpr) {
+        if ($varOrExpr instanceof self) {
             return $this->whereWithExpr($varOrExpr, 'and');
         }
         if (\is_string($varOrExpr)) {
@@ -221,9 +221,9 @@ class KintoneQueryExpr
      * @return $this
      * @throws KintoneQueryException
      */
-    public function orWhere($varOrExpr, string $op = '', $val = null)
+    public function orWhere($varOrExpr, string $op = '', $val = null): self
     {
-        if ($varOrExpr instanceof KintoneQueryExpr) {
+        if ($varOrExpr instanceof self) {
             return $this->whereWithExpr($varOrExpr, 'or');
         }
         if (\is_string($varOrExpr)) {
