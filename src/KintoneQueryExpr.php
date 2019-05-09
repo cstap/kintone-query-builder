@@ -145,7 +145,7 @@ class KintoneQueryExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
      * @param string $conj
-     * @return self
+     * @return $this
      * @throws KintoneQueryException
      */
     private function whereWithVarOpVal(
@@ -166,7 +166,7 @@ class KintoneQueryExpr
     /**
      * @param KintoneQueryExpr $expr
      * @param string $conj
-     * @return self
+     * @return $this
      * @throws KintoneQueryException
      */
     private function whereWithExpr(KintoneQueryExpr $expr, string $conj): self
@@ -183,7 +183,7 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return self
+     * @return $this
      * @throws KintoneQueryException
      */
     public function where($varOrExpr, string $op = '', $val = null): self
@@ -195,7 +195,7 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return self
+     * @return $this
      * @throws KintoneQueryException
      */
     public function andWhere($varOrExpr, string $op = '', $val = null): self
@@ -218,7 +218,7 @@ class KintoneQueryExpr
      * @param string|KintoneQueryExpr $varOrExpr
      * @param string $op
      * @param int|string|(int|string)[] $val
-     * @return self
+     * @return $this
      * @throws KintoneQueryException
      */
     public function orWhere($varOrExpr, string $op = '', $val = null): self

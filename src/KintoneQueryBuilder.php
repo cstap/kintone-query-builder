@@ -29,7 +29,7 @@ class KintoneQueryBuilder extends KintoneQueryExpr
     /**
      * @param string $var
      * @param string $ord
-     * @return self
+     * @return $this
      */
     public function orderBy(string $var, string $ord): self
     {
@@ -43,7 +43,7 @@ class KintoneQueryBuilder extends KintoneQueryExpr
 
     /**
      * @param int $n
-     * @return self
+     * @return $this
      */
     public function limit(int $n): self
     {
@@ -53,7 +53,7 @@ class KintoneQueryBuilder extends KintoneQueryExpr
 
     /**
      * @param int $n
-     * @return self
+     * @return $this
      */
     public function offset(int $n): self
     {

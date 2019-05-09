@@ -40,7 +40,7 @@ class KintoneQueryBuffer implements KintoneQueryBufferInterface
 
     /**
      * @param string|null $conj
-     * @return self
+     * @return $this
      */
     public function setConj(?string $conj): self
     {
