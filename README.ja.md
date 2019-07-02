@@ -1,5 +1,6 @@
 # kintone query builder
-[![CircleCI](https://circleci.com/gh/cstap/kintone-query-builder-php.svg?style=svg)](https://circleci.com/gh/cstap/kintone-query-builder-php)
+
+[![CircleCI](https://circleci.com/gh/toyokumo/kintone-query-builder-php.svg?style=svg)](https://circleci.com/gh/toyokumo/kintone-query-builder-php)
 
 [![PHP Version](https://img.shields.io/badge/php-7.2-pink.svg?style=flat-square)]()
 [![Latest Stable Version](https://poser.pugx.org/toyokumo/kintone-query-builder/v/stable)](https://packagist.org/packages/toyokumo/kintone-query-builder)
