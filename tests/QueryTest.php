@@ -171,6 +171,14 @@ class QueryTest extends TestCase
             [
                 'builder' => (new KintoneQueryBuilder())->where(
                     'time',
+                    '<',
+                    'FROM_TODAY(-10,DAYS)'
+                ),
+                'expected' => 'time < FROM_TODAY(-10,DAYS)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
                     '=',
                     'THIS_WEEK(SUNDAY)'
                 ),
