@@ -42,10 +42,10 @@ class KintoneQueryExpr
             '/PRIMARY_ORGANIZATION\(\)/',
             '/NOW\(\)/',
             '/TODAY\(\)/',
-            '/FROM_TODAY\(-?\d+,DAYS\)/',
-            '/FROM_TODAY\(-?\d+,WEEKS\)/',
-            '/FROM_TODAY\(-?\d+,MONTHS\)/',
-            '/FROM_TODAY\(-?\d+,YEARS\)/',
+            '/FROM_TODAY\(-?\d+,( )*DAYS\)/',
+            '/FROM_TODAY\(-?\d+,( )*WEEKS\)/',
+            '/FROM_TODAY\(-?\d+,( )*MONTHS\)/',
+            '/FROM_TODAY\(-?\d+,( )*YEARS\)/',
             '/THIS_WEEK\(\)/',
             '/THIS_WEEK\(SUNDAY\)/',
             '/THIS_WEEK\(MONDAY\)/',
@@ -103,7 +103,7 @@ class KintoneQueryExpr
             return '"' . self::escapeDoubleQuote($val) . '"';
         }
         if (is_int($val)) {
-            return (string)$val;
+            return (string) $val;
         }
         if (is_array($val)) {
             $list = [];

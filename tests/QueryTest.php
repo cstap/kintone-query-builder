@@ -172,9 +172,41 @@ class QueryTest extends TestCase
                 'builder' => (new KintoneQueryBuilder())->where(
                     'time',
                     '<',
+                    'FROM_TODAY(5, DAYS)'
+                ),
+                'expected' => 'time < FROM_TODAY(5, DAYS)' // with a space
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '<',
+                    'FROM_TODAY(5,   DAYS)' // with spaces
+                ),
+                'expected' => 'time < FROM_TODAY(5,   DAYS)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '<',
                     'FROM_TODAY(-10,DAYS)'
                 ),
                 'expected' => 'time < FROM_TODAY(-10,DAYS)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '<',
+                    'FROM_TODAY(-10, DAYS)' // with a space
+                ),
+                'expected' => 'time < FROM_TODAY(-10, DAYS)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '<',
+                    'FROM_TODAY(-10,   DAYS)' // with spaces
+                ),
+                'expected' => 'time < FROM_TODAY(-10,   DAYS)'
             ],
             [
                 'builder' => (new KintoneQueryBuilder())->where(
