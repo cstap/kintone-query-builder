@@ -16,6 +16,7 @@ composer install
 ```
 ### 基本的な例
 ```php
+<?php
 use KintoneQueryBuilder\KintoneQueryBuilder;
 use KintoneQueryBuilder\KintoneQueryExpr;
 // example
@@ -59,6 +60,7 @@ use KintoneQueryBuilder\KintoneQueryExpr;
 ### 例: kintone APIからの全レコードの取得
 kintone APIの制限のため、一度に501レコード以上取得することはできません。以下のようなコードが必要になったときはkintone query builderは便利です。
 ```php
+<?php
 use KintoneQueryBuilder\KintoneQueryBuilder;
 $builder = (new KintoneQueryBuilder())->where(...);
 $records = $api->fetch($builder.build());
@@ -73,7 +75,8 @@ while(!\empty($records)) {
 
 ### 注意：メソッドは変更的です
 `$builder->where(...)`は、新しい`$builder`のコピーを生成しそれを返す代わりに、`$builder`を変更してそれ自身を返します。この挙動は、以下のような予期しない挙動を引き起こすかもしれません。
-``` php
+```php
+<?php
 $builder = (new KintoneQueryBuilder());
 $q0 = $builder->where('x', '=', 1)->build();
 // $q0 = 'x = 1'
@@ -82,6 +85,7 @@ $q1 = $builder->where('y', '=', 1)->bulid();
 ```
 `$builder`に`y = 1`を返してほしい場合、ファクトリ関数（もしくはファクトリクラス）を定義すべきです。
 ```php
+<?php
 function getBaseBuilder() {
     return (new KintoneQueryBuilder())->where('x', '=', 1);
 }
