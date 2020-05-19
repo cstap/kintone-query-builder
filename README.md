@@ -18,7 +18,8 @@ composer require toyokumo/kintone-query-builder:v1.0.0
 composer install
 ```
 ### basic
-``` php
+```php
+<?php
 use KintoneQueryBuilder\KintoneQueryBuilder;
 use KintoneQueryBuilder\KintoneQueryExpr;
 // example
@@ -59,6 +60,7 @@ use KintoneQueryBuilder\KintoneQueryExpr;
 ### example: fetch all records from kintone API
 You can't get more than 501 records because of kintone API restriction. In that situation, kintone query builder is very useful.
 ```php
+<?php
 use KintoneQueryBuilder\KintoneQueryBuilder;
 $builder = (new KintoneQueryBuilder())->where(...);
 $records = $api->fetch($builder.build());
@@ -73,7 +75,8 @@ while(!\empty($records)) {
 ### Precautions: methods are mutable methods
 Note that `$builder->where(...)` modifies `$builder` and returns itself instead of returning a new copied builder object.
 This may cause unexpected behaivor like this.
-``` php
+```php
+<?php
 $builder = (new KintoneQueryBuilder());
 $q0 = $builder->where('x', '=', 1)->build();
 // $q0 = 'x = 1'
@@ -82,6 +85,7 @@ $q1 = $builder->where('y', '=', 1)->bulid();
 ```
 If you want `$builder` to return `'y=1'`, you should define a factory function (or a factory class).
 ```php
+<?php
 function getBaseBuilder() {
     return (new KintoneQueryBuilder())->where('x', '=', 1);
 }
