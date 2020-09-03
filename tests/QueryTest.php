@@ -163,6 +163,22 @@ class QueryTest extends TestCase
             [
                 'builder' => (new KintoneQueryBuilder())->where(
                     'time',
+                    '=',
+                    'YESTERDAY()'
+                ),
+                'expected' => 'time = YESTERDAY()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'TOMORROW()'
+                ),
+                'expected' => 'time = TOMORROW()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
                     '<',
                     'FROM_TODAY(5,DAYS)'
                 ),
@@ -244,6 +260,22 @@ class QueryTest extends TestCase
                 'builder' => (new KintoneQueryBuilder())->where(
                     'time',
                     '=',
+                    'NEXT_WEEK(SATURDAY)'
+                ),
+                'expected' => 'time = NEXT_WEEK(SATURDAY)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'NEXT_WEEK()'
+                ),
+                'expected' => 'time = NEXT_WEEK()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
                     'THIS_MONTH()'
                 ),
                 'expected' => 'time = THIS_MONTH()'
@@ -308,9 +340,57 @@ class QueryTest extends TestCase
                 'builder' => (new KintoneQueryBuilder())->where(
                     'time',
                     '=',
+                    'NEXT_MONTH()'
+                ),
+                'expected' => 'time = NEXT_MONTH()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'NEXT_MONTH(LAST)'
+                ),
+                'expected' => 'time = NEXT_MONTH(LAST)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'NEXT_MONTH(1)'
+                ),
+                'expected' => 'time = NEXT_MONTH(1)'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'NEXT_MONTH(81)'
+                ),
+                'expected' => 'time = "NEXT_MONTH(81)"'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
                     'THIS_YEAR()'
                 ),
                 'expected' => 'time = THIS_YEAR()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'LAST_YEAR()'
+                ),
+                'expected' => 'time = LAST_YEAR()'
+            ],
+            [
+                'builder' => (new KintoneQueryBuilder())->where(
+                    'time',
+                    '=',
+                    'NEXT_YEAR()'
+                ),
+                'expected' => 'time = NEXT_YEAR()'
             ]
         ];
         foreach ($tests as $t) {

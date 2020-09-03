@@ -42,6 +42,8 @@ class KintoneQueryExpr
             '/PRIMARY_ORGANIZATION\(\)/',
             '/NOW\(\)/',
             '/TODAY\(\)/',
+            '/YESTERDAY\(\)/',
+            '/TOMORROW\(\)/',
             '/FROM_TODAY\(-?\d+,( )*DAYS\)/',
             '/FROM_TODAY\(-?\d+,( )*WEEKS\)/',
             '/FROM_TODAY\(-?\d+,( )*MONTHS\)/',
@@ -62,13 +64,26 @@ class KintoneQueryExpr
             '/LAST_WEEK\(THURSDAY\)/',
             '/LAST_WEEK\(FRIDAY\)/',
             '/LAST_WEEK\(SATURDAY\)/',
+            '/NEXT_WEEK\(\)/',
+            '/NEXT_WEEK\(SUNDAY\)/',
+            '/NEXT_WEEK\(MONDAY\)/',
+            '/NEXT_WEEK\(TUESDAY\)/',
+            '/NEXT_WEEK\(WEDNESDAY\)/',
+            '/NEXT_WEEK\(THURSDAY\)/',
+            '/NEXT_WEEK\(FRIDAY\)/',
+            '/NEXT_WEEK\(SATURDAY\)/',
             '/THIS_MONTH\(\)/',
             '/THIS_MONTH\(([1-9]|([1-2][0-9])|(3[0-1]))\)/',
             '/THIS_MONTH\(LAST\)/',
             '/LAST_MONTH\(\)/',
             '/LAST_MONTH\(([1-9]|([1-2][0-9])|(3[0-1]))\)/',
             '/LAST_MONTH\(LAST\)/',
-            '/THIS_YEAR\(\)/'
+            '/NEXT_MONTH\(\)/',
+            '/NEXT_MONTH\(([1-9]|([1-2][0-9])|(3[0-1]))\)/',
+            '/NEXT_MONTH\(LAST\)/',
+            '/THIS_YEAR\(\)/',
+            '/LAST_YEAR\(\)/',
+            '/NEXT_YEAR\(\)/'
         ];
         foreach ($regexs as $r) {
             if (preg_match($r, $s)) {
