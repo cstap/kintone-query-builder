@@ -1,6 +1,6 @@
 # kintone query builder
 
-[![CircleCI](https://circleci.com/gh/toyokumo/kintone-query-builder-php.svg?style=svg)](https://circleci.com/gh/toyokumo/kintone-query-builder-php)
+[![Build and Test](https://github.com/toyokumo/kintone-query-builder-php/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/toyokumo/kintone-query-builder-php/actions/workflows/build-and-test.yml)
 
 [![PHP Version](https://img.shields.io/badge/php-7.2-pink.svg?style=flat-square)]()
 [![Latest Stable Version](https://poser.pugx.org/toyokumo/kintone-query-builder/v/stable)](https://packagist.org/packages/toyokumo/kintone-query-builder)
@@ -11,8 +11,7 @@
 ## usage
 ### インストール
 ```
-composer require toyokumo/kintone-query-builder:v1.0.0
-composer install
+composer require toyokumo/kintone-query-builder
 ```
 ### 基本的な例
 ```php
