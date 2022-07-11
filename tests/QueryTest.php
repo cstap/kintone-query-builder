@@ -3,6 +3,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
 use KintoneQueryBuilder\KintoneQueryBuilder;
+use KintoneQueryBuilder\KintoneQueryException;
 use KintoneQueryBuilder\KintoneQueryExpr;
 
 class QueryTest extends TestCase
@@ -511,6 +512,58 @@ class QueryTest extends TestCase
             ->andWhere((new KintoneQueryExpr())->where('x', '<', 10))
             ->build();
         $this->assertEquals('(x < 10)', $q);
+    }
+
+    public function testFieldCheck(): void
+    {
+        $disallowed = 'レコード番号 = "1") or レコード番号 != "0" or (レコード番号';
+        // fieldCodeに許可されていない値が含まれている場合
+        try {
+            $q = (new KintoneQueryBuilder())
+                ->orWhere($disallowed, '=', 1)
+                ->build();
+            $this->fail('不適切なクエリに対して例外が投げられなかった: ' . $q);
+        } catch (KintoneQueryException $e) {
+            $this->assertIsString($e->getMessage());
+        }
+        // exprインスタンスのfieldCodeに不正な値を含む場合
+        try {
+            $expr = (new KintoneQueryExpr())
+                ->where($disallowed, '=', 1)
+                ->andWhere($disallowed, '<', 1);
+            $q = (new KintoneQueryBuilder())
+                ->where($expr)
+                ->build();
+            $this->fail('不適切なクエリに対して例外が投げられなかった: ' . $q);
+        } catch (KintoneQueryException $e) {
+            $this->assertIsString($e->getMessage());
+        }
+    }
+
+    public function testSignCheck(): void
+    {
+        $disallowed = ') or レコード番号 != 0 or (';
+        // signに許可された値以外を含む場合
+        try {
+            $q = (new KintoneQueryBuilder())
+                ->orWhere('レコード番号', $disallowed, 1)
+                ->build();
+            $this->fail('不適切なクエリに対して例外が投げられなかった: ' . $q);
+        } catch (KintoneQueryException $e) {
+            $this->assertIsString($e->getMessage());
+        }
+        // exprインスタンスのsignに不正な値を含む場合
+        try {
+            $expr = (new KintoneQueryExpr())
+                ->where('レコード番号', $disallowed, 1)
+                ->andWhere('レコード番号2', $disallowed, 1);
+            $q = (new KintoneQueryBuilder())
+                ->where($expr)
+                ->build();
+            $this->fail('不適切なクエリに対して例外が投げられなかった: ' . $q);
+        } catch (KintoneQueryException $e) {
+            $this->assertIsString($e->getMessage());
+        }
     }
 
     public function testEscape(): void

@@ -93,6 +93,35 @@ class KintoneQueryExpr
         return false;
     }
 
+    // Ref. フィールドコードで使用できない文字: https://jp.cybozu.help/k/ja/user/app_settings/form/autocalc/fieldcode.html
+    public const DISALLOWED_FIELD_CHARS = ['(', ')',  '（', '）', '「', '」', '[', ']', '【', '】', '{', '}', '"', ' '];
+
+    /**
+     * @param string $field
+     * @return boolean
+     */
+    private static function fieldCheck(string $field): bool
+    {
+        foreach (self::DISALLOWED_FIELD_CHARS as $disallowedChar) {
+            if (strpos($field, $disallowedChar) !== false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Ref. 演算子で使用可能な文字: https://developer.cybozu.io/hc/ja/articles/202331474-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%8F%96%E5%BE%97-GET-#q1
+    public const ALLOWED_SIGN = ['=', '!=', '>', '<', '>=', '<=', 'in', 'not in', 'like', 'not like', 'or', 'and'];
+
+    /**
+     * @param string $sign
+     * @return boolean
+     */
+    private static function signCheck(string $sign): bool
+    {
+        return in_array($sign, self::ALLOWED_SIGN, true);
+    }
+
     /**
      * escape double quote ho"ge -> ho\"ge
      * @param string $s
@@ -142,6 +171,13 @@ class KintoneQueryExpr
      */
     public static function genWhereClause($var, $op, $val): string
     {
+        if (!self::fieldCheck($var)) {
+            throw new KintoneQueryException('Invalid field');
+        }
+        if (!self::signCheck($op)) {
+            throw new KintoneQueryException('Invalid sign');
+        }
+
         // case $op = 'in' or 'not in'
         if ($op === 'in' || $op === 'not in') {
             // expects $val's type to be array
