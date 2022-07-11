@@ -11,8 +11,7 @@
 ## usage
 ### インストール
 ```
-composer require toyokumo/kintone-query-builder:v1.0.0
-composer install
+composer require toyokumo/kintone-query-builder
 ```
 ### 基本的な例
 ```php

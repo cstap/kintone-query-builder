@@ -14,8 +14,7 @@ Query builder for [Kintone REST API](https://developer.kintone.io/hc/en-us/artic
 ## usage
 ### installation
 ```
-composer require toyokumo/kintone-query-builder:v1.0.0
-composer install
+composer require toyokumo/kintone-query-builder
 ```
 ### basic
 ```php
